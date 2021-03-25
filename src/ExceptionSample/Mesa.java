@@ -2,19 +2,21 @@ package ExceptionSample;
 
 public class Mesa {
 
+    int id;
     int Capacidad;
     boolean Ocupada;
 
-    public Mesa(int Asientos){
+    public Mesa(int id,int Asientos){
+        this.id = id;
         this.Capacidad = Asientos;
         this.Ocupada = false;
     }
 
-    public void ocuparMesa(){
-        this.Ocupada = true;
+    public int getID(){
+        return this.id;
     }
 
-    public void desocuparMesa(){
-        this.Ocupada = false;
+    public void ocuparMesa(){
+        this.Ocupada = true;
     }
 }

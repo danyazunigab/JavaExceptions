@@ -2,7 +2,7 @@ package ExceptionSample;
 
 //Lista simple
 public class ListaMesas {
-    class Nodo{
+    static class Nodo{
         Mesa data;
         Nodo next;
 
@@ -26,25 +26,27 @@ public class ListaMesas {
         }
         tail = nuevoNodo;
     }
-    public void buscarDesocupadas(int cantPersonas) throws RestauranteLlenoException{
+    public Mesa buscarDesocupadas(int cantPersonas) throws RestauranteLlenoException{
         Nodo actual = head;
-        Nodo desocupada = null;
+        Mesa desocupada = null;
 
         if(head == null){
             System.out.println("Lista vacía");
-            return;
         }
         try{
             while(actual != null){
                 if((!actual.data.Ocupada) && (actual.data.Capacidad >= cantPersonas)){
                     actual.data.ocuparMesa();
                     System.out.println("Se ha encontrado una mesa.");
+                    desocupada = actual.data;
+                    break;
                 }
                 actual = actual.next;
             }
         }catch (Exception e){
             throw new RestauranteLlenoException("No se encontraron mesas disponibles.");
+        }finally {
+            return desocupada;
         }
-
     }
 }
